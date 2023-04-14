@@ -1,4 +1,4 @@
-# Llama-grpc
+# LLaMA-grpc
 
 This is a gRPC server that provides an API for interacting with a Llama-based language model built by [Meta AI](https://ai.facebook.com/blog/large-language-model-llama-meta-ai/). It allows users to generate text, and update model parameters.
 
