@@ -31,6 +31,10 @@ bashCopy code
 
 ```bash
 pip install -r requirements.txt
+
+or
+
+make install
 ```
 
 3.  Create a `.env` file with the necessary environment variables (examples below).
@@ -38,6 +42,10 @@ pip install -r requirements.txt
 4.  Start the server:
 ```bash
 python main.py
+
+or 
+
+make run
 ``` 
 
 ## Environment Variables
