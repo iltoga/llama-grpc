@@ -9,10 +9,9 @@ This example application is released under MIT license, meaning you can do whate
 
 ## Features
 
--   Generate text using a custom Llama model.
--   Update model parameters.
+-   Generate text using a custom Llama model, downloadable from ([Hugging Face](https://huggingface.co/models)).
+-   Update model parameters at runtime.
 -   Custom prompt templates with Jinja2.
--   Easy integration with Hugging Face Hub for model hosting.
 
 ## Requirements
 
@@ -63,8 +62,11 @@ LLAMA_CONTEXT_PARAMETERS={"n_ctx": 2500}
 The gRPC service provides two methods:
 
 1.  `GenerateText`: Generates text based on a given product name and description. It accepts an optional template name and GPT parameters. Returns the generated text.
-2.  `UpdateParameters`: Updates the Llama context parameters and reloads the model. Returns a success status.
+2.  `UpdateParameters`: (TODO) Updates the Llama context parameters and reloads the model. Returns a success status.
 
 ## License
 
 This project is licensed under the [MIT License](https://chat.openai.com/LICENSE).
+
+## Contribute
+[Contribute to LLaMA-grpc](CONTRIBUTE.md)

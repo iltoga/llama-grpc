@@ -1,6 +1,8 @@
 import os
 import json
 import grpc
+import sys
+import signal
 from concurrent import futures
 import pyllamacpp_pb2
 import pyllamacpp_pb2_grpc
@@ -18,11 +20,6 @@ class LlamaModelService(pyllamacpp_pb2_grpc.LlamaModelServicer):
         "temp": 0.4,
     }
 
-    repo_id=None
-    ggml_model=None
-    model=None
-    default_prompt_template= None
-
     def __init__(self):
         #load env vars
         self.__load_env_vars()
@@ -31,7 +28,14 @@ class LlamaModelService(pyllamacpp_pb2_grpc.LlamaModelServicer):
         hf_hub_download(self.repo_id, filename=self.ggml_model, local_dir=".")
 
         #Load custom model params from env
-        custom_llama_context_parameters = json.loads(os.environ.get('LLAMA_CONTEXT_PARAMETERS'))
+        try:
+            custom_llama_context_parameters = json.loads(os.environ.get('LLAMA_CONTEXT_PARAMETERS', "{}"))
+        except json.JSONDecodeError:
+            print("Warning: LLAMA_CONTEXT_PARAMETERS contains invalid JSON. Using default parameters.")
+            custom_llama_context_parameters = {}
+
+        # custom_llama_context_parameters = json.loads(os.environ.get('LLAMA_CONTEXT_PARAMETERS'))
+
         self.llama_context_params.update(custom_llama_context_parameters)
 
         # create the model
@@ -106,13 +110,28 @@ class LlamaModelService(pyllamacpp_pb2_grpc.LlamaModelServicer):
         self.model = Model(ggml_model=self.ggml_model, **self.llama_context_params)
         return pyllamacpp_pb2.UpdateParametersResponse(success=True)
 
+def exit_gracefully(signum, frame):
+    print("Caught signal, stopping server...")
+    server.stop(0)
+    print("Server stopped. Exiting...")
+    sys.exit(0)
+
 def serve():
+    global server
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     pyllamacpp_pb2_grpc.add_LlamaModelServicer_to_server(LlamaModelService(), server)
     server.add_insecure_port('[::]:50051')
     server.start()
     print('Server started on port 50051')
-    server.wait_for_termination()
+
+    # Register the signal handler for graceful exit
+    signal.signal(signal.SIGINT, exit_gracefully)
+    signal.signal(signal.SIGTERM, exit_gracefully)
+
+    try:
+        server.wait_for_termination()
+    except KeyboardInterrupt:
+        exit_gracefully(None, None)
 
 if __name__ == '__main__':
     serve()

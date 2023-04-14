@@ -1,0 +1,5 @@
+grpcio==1.53.0
+grpcio-tools==1.53.0
+pyllamacpp==1.0.6
+huggingface-hub==0.13.4
+Jinja2==3.1.2
