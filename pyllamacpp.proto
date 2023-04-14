@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package pyllamacpp;
+
+service LlamaModel {
+  rpc GenerateText(GenerateTextRequest) returns (GenerateTextResponse) {}
+  rpc UpdateParameters(UpdateParametersRequest) returns (UpdateParametersResponse) {}
+}
+
+message GptParameters {
+  optional string nThreads = 1;
+  optional string temp = 2;
+  optional string topK = 3;
+  optional string topP = 4;
+  optional string seed = 5;
+  optional string nPredict = 6;
+  optional string repeatLastN = 7;
+  optional string repeatPenalty = 8;
+  optional string nBatch = 9;
+}
+
+message LlamaContextParameters {
+  optional string nCtx = 1;
+  optional string nParts = 2;
+  optional string seed = 3;
+  optional string f16Kv = 4;
+  optional string logitsAll = 5;
+  optional string vocabOnly = 6;
+  optional string useMlock = 7;
+  optional string embedding = 8;
+}
+
+message GenerateTextRequest {
+  string productName = 1;
+  string productDescription = 2;
+  string template = 3;
+  GptParameters gptParameters = 4;
+}
+
+message GenerateTextResponse {
+  string text = 1;
+}
+
+message UpdateParametersRequest {
+  LlamaContextParameters llamaContextParameters = 1;
+}
+
+message UpdateParametersResponse {
+  bool success = 1;
+}
+
