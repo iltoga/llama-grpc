@@ -32,6 +32,6 @@ git commit -m "Add your commit message here"
 git push origin your-feature-branch
 ``` 
 
-8.  Navigate to your forked repository on GitHub and click the "New Pull Request" button. Choose the base repository (the original LLaMA-grpc repository) and the base branch (usually `main`), as well as your forked repository and the feature branch you created. Click "Create Pull Request" and provide a detailed description of your changes.
+1.  Navigate to your forked repository on GitHub and click the "New Pull Request" button. Choose the base repository (the original LLaMA-grpc repository) and the base branch (`master`), as well as your forked repository and the feature branch you created. Click "Create Pull Request" and provide a detailed description of your changes.
 
 Once your pull request has been reviewed and approved by the maintainers, they will merge your changes into the main LLaMA-grpc repository. Thank you for your contribution!
