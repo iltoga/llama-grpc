@@ -4,8 +4,6 @@ package pyllamacpp;
 
 service LlamaModel {
   rpc GenerateText(GenerateTextRequest) returns (GenerateTextResponse) {}
-  // Server streaming RPC method
-  rpc GenerateTextStream(GenerateTextRequest) returns (stream GenerateTextResponse) {}
   rpc UpdateParameters(UpdateParametersRequest) returns (UpdateParametersResponse) {}
 }
 

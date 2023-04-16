@@ -45,7 +45,7 @@ class LlamaModelService(pyllamacpp_pb2_grpc.LlamaModelServicer):
         self.ggml_model = os.environ.get('GGML_MODEL', "ggjt-model.bin")
         self.repo_id = os.environ.get('REPO_ID', "LLukas22/gpt4all-lora-quantized-ggjt")
 
-    def GenerateText(self, request, context):
+    def _updateGptParams(self, request):
         # update the gpt params with the new ones from the request
         reqParams = {}
         if request.gptParameters.nThreads != "":
@@ -66,11 +66,11 @@ class LlamaModelService(pyllamacpp_pb2_grpc.LlamaModelServicer):
             reqParams["n_predict"] = int(request.gptParameters.nPredict)
         self.gpt_params.update(reqParams)
 
+    def _generatePrompt(self, request, template_terminator = "Bot:"):
         # get the template and compile the prompt
         templateName = request.template if request.template != "" else self.default_prompt_template
         env = Environment(loader=FileSystemLoader('prompt_templates'))
         template = env.get_template(f"{templateName}.j2")
-        template_terminator = "Bot:"
 
         # Translate the product description to english to facilitate the model generating the fun fact
         if request.productDescription != "":
@@ -80,9 +80,17 @@ class LlamaModelService(pyllamacpp_pb2_grpc.LlamaModelServicer):
             product_description=request.productDescription,
             terminator=template_terminator,
         )
+        return conversation_start
+
+    def GenerateText(self, request, context):
+        # update the gpt params with the new ones from the request
+        self._updateGptParams(request)
+        # generate the prompt
+        template_terminator = "Bot:"
+        prompt = self._generatePrompt(request, template_terminator=template_terminator)
 
         generated_text = self.model.generate(
-            conversation_start,
+            prompt,
             new_text_callback=None,
             verbose=False,
             **self.gpt_params,
@@ -100,6 +108,7 @@ class LlamaModelService(pyllamacpp_pb2_grpc.LlamaModelServicer):
         # Translate the response to the requested language
         if request.language != "":
             response = translateTo(response, lang=request.language)
+
         return pyllamacpp_pb2.GenerateTextResponse(text=response)
 
     def UpdateParameters(self, request, context):
