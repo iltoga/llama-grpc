@@ -9,7 +9,7 @@ This example application is released under MIT license, meaning you can do whate
 
 ## Features
 
--   Generate text using a custom Llama model, downloadable from ([Hugging Face](https://huggingface.co/models)).
+-   Generate text using a custom Llama model, (automaically downloads the model from [Hugging Face](https://huggingface.co/models)).
 -   Update model parameters at runtime.
 -   Custom prompt templates with Jinja2.
 -   Translate generated text.
