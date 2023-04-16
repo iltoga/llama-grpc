@@ -13,7 +13,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10pyllamacpp.proto\x12\npyllamacpp\"\xbf\x02\n\rGptParameters\x12\x15\n\x08nThreads\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x11\n\x04temp\x18\x02 \x01(\tH\x01\x88\x01\x01\x12\x11\n\x04topK\x18\x03 \x01(\tH\x02\x88\x01\x01\x12\x11\n\x04topP\x18\x04 \x01(\tH\x03\x88\x01\x01\x12\x11\n\x04seed\x18\x05 \x01(\tH\x04\x88\x01\x01\x12\x15\n\x08nPredict\x18\x06 \x01(\tH\x05\x88\x01\x01\x12\x18\n\x0brepeatLastN\x18\x07 \x01(\tH\x06\x88\x01\x01\x12\x1a\n\rrepeatPenalty\x18\x08 \x01(\tH\x07\x88\x01\x01\x12\x13\n\x06nBatch\x18\t \x01(\tH\x08\x88\x01\x01\x42\x0b\n\t_nThreadsB\x07\n\x05_tempB\x07\n\x05_topKB\x07\n\x05_topPB\x07\n\x05_seedB\x0b\n\t_nPredictB\x0e\n\x0c_repeatLastNB\x10\n\x0e_repeatPenaltyB\t\n\x07_nBatch\"\xa4\x02\n\x16LlamaContextParameters\x12\x11\n\x04nCtx\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x13\n\x06nParts\x18\x02 \x01(\tH\x01\x88\x01\x01\x12\x11\n\x04seed\x18\x03 \x01(\tH\x02\x88\x01\x01\x12\x12\n\x05\x66\x31\x36Kv\x18\x04 \x01(\tH\x03\x88\x01\x01\x12\x16\n\tlogitsAll\x18\x05 \x01(\tH\x04\x88\x01\x01\x12\x16\n\tvocabOnly\x18\x06 \x01(\tH\x05\x88\x01\x01\x12\x15\n\x08useMlock\x18\x07 \x01(\tH\x06\x88\x01\x01\x12\x16\n\tembedding\x18\x08 \x01(\tH\x07\x88\x01\x01\x42\x07\n\x05_nCtxB\t\n\x07_nPartsB\x07\n\x05_seedB\x08\n\x06_f16KvB\x0c\n\n_logitsAllB\x0c\n\n_vocabOnlyB\x0b\n\t_useMlockB\x0c\n\n_embedding\"\x8a\x01\n\x13GenerateTextRequest\x12\x13\n\x0bproductName\x18\x01 \x01(\t\x12\x1a\n\x12productDescription\x18\x02 \x01(\t\x12\x10\n\x08template\x18\x03 \x01(\t\x12\x30\n\rgptParameters\x18\x04 \x01(\x0b\x32\x19.pyllamacpp.GptParameters\"$\n\x14GenerateTextResponse\x12\x0c\n\x04text\x18\x01 \x01(\t\"]\n\x17UpdateParametersRequest\x12\x42\n\x16llamaContextParameters\x18\x01 \x01(\x0b\x32\".pyllamacpp.LlamaContextParameters\"+\n\x18UpdateParametersResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\xc2\x01\n\nLlamaModel\x12S\n\x0cGenerateText\x12\x1f.pyllamacpp.GenerateTextRequest\x1a .pyllamacpp.GenerateTextResponse\"\x00\x12_\n\x10UpdateParameters\x12#.pyllamacpp.UpdateParametersRequest\x1a$.pyllamacpp.UpdateParametersResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x10pyllamacpp.proto\x12\npyllamacpp\"\xbf\x02\n\rGptParameters\x12\x15\n\x08nThreads\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x11\n\x04temp\x18\x02 \x01(\tH\x01\x88\x01\x01\x12\x11\n\x04topK\x18\x03 \x01(\tH\x02\x88\x01\x01\x12\x11\n\x04topP\x18\x04 \x01(\tH\x03\x88\x01\x01\x12\x11\n\x04seed\x18\x05 \x01(\tH\x04\x88\x01\x01\x12\x15\n\x08nPredict\x18\x06 \x01(\tH\x05\x88\x01\x01\x12\x18\n\x0brepeatLastN\x18\x07 \x01(\tH\x06\x88\x01\x01\x12\x1a\n\rrepeatPenalty\x18\x08 \x01(\tH\x07\x88\x01\x01\x12\x13\n\x06nBatch\x18\t \x01(\tH\x08\x88\x01\x01\x42\x0b\n\t_nThreadsB\x07\n\x05_tempB\x07\n\x05_topKB\x07\n\x05_topPB\x07\n\x05_seedB\x0b\n\t_nPredictB\x0e\n\x0c_repeatLastNB\x10\n\x0e_repeatPenaltyB\t\n\x07_nBatch\"\xa4\x02\n\x16LlamaContextParameters\x12\x11\n\x04nCtx\x18\x01 \x01(\tH\x00\x88\x01\x01\x12\x13\n\x06nParts\x18\x02 \x01(\tH\x01\x88\x01\x01\x12\x11\n\x04seed\x18\x03 \x01(\tH\x02\x88\x01\x01\x12\x12\n\x05\x66\x31\x36Kv\x18\x04 \x01(\tH\x03\x88\x01\x01\x12\x16\n\tlogitsAll\x18\x05 \x01(\tH\x04\x88\x01\x01\x12\x16\n\tvocabOnly\x18\x06 \x01(\tH\x05\x88\x01\x01\x12\x15\n\x08useMlock\x18\x07 \x01(\tH\x06\x88\x01\x01\x12\x16\n\tembedding\x18\x08 \x01(\tH\x07\x88\x01\x01\x42\x07\n\x05_nCtxB\t\n\x07_nPartsB\x07\n\x05_seedB\x08\n\x06_f16KvB\x0c\n\n_logitsAllB\x0c\n\n_vocabOnlyB\x0b\n\t_useMlockB\x0c\n\n_embedding\"\x9c\x01\n\x13GenerateTextRequest\x12\x13\n\x0bproductName\x18\x01 \x01(\t\x12\x1a\n\x12productDescription\x18\x02 \x01(\t\x12\x10\n\x08template\x18\x03 \x01(\t\x12\x10\n\x08language\x18\x04 \x01(\t\x12\x30\n\rgptParameters\x18\x05 \x01(\x0b\x32\x19.pyllamacpp.GptParameters\"$\n\x14GenerateTextResponse\x12\x0c\n\x04text\x18\x01 \x01(\t\"]\n\x17UpdateParametersRequest\x12\x42\n\x16llamaContextParameters\x18\x01 \x01(\x0b\x32\".pyllamacpp.LlamaContextParameters\"+\n\x18UpdateParametersResponse\x12\x0f\n\x07success\x18\x01 \x01(\x08\x32\xc2\x01\n\nLlamaModel\x12S\n\x0cGenerateText\x12\x1f.pyllamacpp.GenerateTextRequest\x1a .pyllamacpp.GenerateTextResponse\"\x00\x12_\n\x10UpdateParameters\x12#.pyllamacpp.UpdateParametersRequest\x1a$.pyllamacpp.UpdateParametersResponse\"\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'pyllamacpp_pb2', globals())
@@ -25,13 +25,13 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _LLAMACONTEXTPARAMETERS._serialized_start=355
   _LLAMACONTEXTPARAMETERS._serialized_end=647
   _GENERATETEXTREQUEST._serialized_start=650
-  _GENERATETEXTREQUEST._serialized_end=788
-  _GENERATETEXTRESPONSE._serialized_start=790
-  _GENERATETEXTRESPONSE._serialized_end=826
-  _UPDATEPARAMETERSREQUEST._serialized_start=828
-  _UPDATEPARAMETERSREQUEST._serialized_end=921
-  _UPDATEPARAMETERSRESPONSE._serialized_start=923
-  _UPDATEPARAMETERSRESPONSE._serialized_end=966
-  _LLAMAMODEL._serialized_start=969
-  _LLAMAMODEL._serialized_end=1163
+  _GENERATETEXTREQUEST._serialized_end=806
+  _GENERATETEXTRESPONSE._serialized_start=808
+  _GENERATETEXTRESPONSE._serialized_end=844
+  _UPDATEPARAMETERSREQUEST._serialized_start=846
+  _UPDATEPARAMETERSREQUEST._serialized_end=939
+  _UPDATEPARAMETERSRESPONSE._serialized_start=941
+  _UPDATEPARAMETERSRESPONSE._serialized_end=984
+  _LLAMAMODEL._serialized_start=987
+  _LLAMAMODEL._serialized_end=1181
 # @@protoc_insertion_point(module_scope)

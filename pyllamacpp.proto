@@ -34,7 +34,8 @@ message GenerateTextRequest {
   string productName = 1;
   string productDescription = 2;
   string template = 3;
-  GptParameters gptParameters = 4;
+  string language = 4;
+  GptParameters gptParameters = 5;
 }
 
 message GenerateTextResponse {
