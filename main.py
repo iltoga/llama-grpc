@@ -49,7 +49,7 @@ class LlamaModelService(pyllamacpp_pb2_grpc.LlamaModelServicer):
         # update the gpt params with the new ones from the request
         reqParams = {}
         if request.gptParameters.nThreads != "":
-            reqParams["n_threads"] = float(request.gptParameters.nThreads)
+            reqParams["n_threads"] = int(request.gptParameters.nThreads)
         if request.gptParameters.temp != "":
             reqParams["temp"] = float(request.gptParameters.temp)
         if request.gptParameters.topK != "":
@@ -61,9 +61,9 @@ class LlamaModelService(pyllamacpp_pb2_grpc.LlamaModelServicer):
         if request.gptParameters.repeatPenalty != "":
             reqParams["repeat_penalty"] = float(request.gptParameters.repeatPenalty)
         if request.gptParameters.nBatch != "":
-            reqParams["n_batch"] = float(request.gptParameters.nBatch)
+            reqParams["n_batch"] = int(request.gptParameters.nBatch)
         if request.gptParameters.nPredict != "":
-            reqParams["n_predict"] = float(request.gptParameters.nPredict)
+            reqParams["n_predict"] = int(request.gptParameters.nPredict)
         self.gpt_params.update(reqParams)
 
         # get the template and compile the prompt

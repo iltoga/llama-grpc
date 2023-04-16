@@ -73,6 +73,51 @@ The gRPC service provides two methods:
 1.  `GenerateText`: Generates text based on a given product name and description. It accepts an optional template name and GPT parameters. Returns the generated text.
 2.  `UpdateParameters`: (TODO) Updates the Llama context parameters and reloads the model. Returns a success status.
 
+## Examples
+After running the server, open a grpc client application (such as BloomRPC), import `pyllamacpp.proto`, open `ptllamacpp.LlamaModel.GenerateText` and try these payloads (note that you can change the language of the answer and use any language for the product description):
+
+### Fun fact generator
+this prompt template will generate a fun fact about the product
+```json
+{
+  "productName": "Indomie Mi Goreng",
+  "productDescription": "Indomie Mi Goreng adalah rasa Indomie paling populer di seluruh dunia. Dibuat dengan tepung terigu berkualitas dan bahan serta bumbu segar pilihan, sepiring Indomie Mi Goreng pasti akan mencerahkan hari Anda.",
+  "template": "funfact-generator-w-description",
+  "language": "id"
+}
+```
+
+example of answer:
+```json
+{
+  "text": "Indomie Mi Goreng adalah rasa Indomie paling populer di seluruh dunia. Dibuat dengan tepung terigu berkualitas dan bahan-bahan segar pilihan serta rempah-rempah, sepiring Indomie Mi Goreng pasti akan mencerahkan hari Anda."
+}
+```
+
+### The story teller
+this prompt template will generate a short story of the product
+
+```json
+{
+  "productName": "Indomie Mi Goreng",
+  "productDescription": "Indomie Mi Goreng adalah rasa Indomie paling populer di seluruh dunia. Dibuat dengan tepung terigu berkualitas dan bahan serta bumbu segar pilihan, sepiring Indomie Mi Goreng pasti akan mencerahkan hari Anda.",
+  "template": "story-teller",
+  "language": "id",
+  "gptParameters": {
+    "nPredict": "200"
+  }  
+}
+```
+
+example of answer:
+```json
+{
+  "text": "Dahulu kala, ada seorang anak kecil bernama Indomie. Dia suka makan mie Indomie untuk makan malam, tetapi dia tidak punya cukup uang untuk membelinya sepanjang waktu. Suatu hari, orang tuanya membawanya ke supermarket dan mengatakan kepadanya bahwa mereka akan membeli beberapa bahan makanan. Mereka mengatakan bahwa dia bisa memilih satu item dari toko. Dia bersemangat karena dia tahu persis apa yang dia inginkan: mie Indomie Mi Goreng! Mie Indomie Mi Goreng adalah makanan favorit Indomie, dan dia tidak sabar untuk mencobanya sendiri! Orang tuanya membawanya ke bagian Indomie di toko dan membiarkannya memilih favoritnya sendiri. Dia sangat senang sehingga dia berlari ke rak dan mengambil sekotak mie Indomie Mi Goreng dengan kedua tangan! Orang tua Indomie terkejut dengan antusiasmenya"
+}
+```
+
+
+
 ## License
 
 This project is licensed under the [MIT License](https://chat.openai.com/LICENSE).
