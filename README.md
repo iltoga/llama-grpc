@@ -1,8 +1,8 @@
 # LLaMA-grpc
 
-This is a gRPC server that provides an API for interacting with a Llama-based language model built by [Meta AI](https://ai.facebook.com/blog/large-language-model-llama-meta-ai/). It allows users to generate text, and update model parameters.
+This is a gRPC server that provides an API for interacting with a Llama-based language model built by [Meta AI](https://ai.facebook.com/blog/large-language-model-llama-meta-ai/). It allows users to generate text based on a give prompt template.
 
-This example project uses a fine tuned model, obtained from the original LLamA 7B model.
+This example project uses a fine tuned LLM called [gpt4all](https://huggingface.co/LLukas22/gpt4all-lora-quantized-ggjt), obtained from the original LLamA 7B model and should perform better than the original one for generating 'chat-like' answers.
 
 ### IMPORTANT note about the license
 This example application is released under MIT license, meaning you can do whatever you want with it and its code, but as of April 2023, Meta AI (Facebook) and openai only allows using GPT-like LLM models (or models trained with data from GPT) to be used for `research purpose`. So if you plan to use it in your commercial application, somebody,  some day, could knock at your door and ask a ridiculous amount of money ;)  
@@ -11,8 +11,8 @@ This example application is released under MIT license, meaning you can do whate
 
 -   Generate text using a custom Llama model, (automaically downloads the model from [Hugging Face](https://huggingface.co/models)).
 -   Update model parameters at runtime.
--   Custom prompt templates with Jinja2.
--   Translate generated text.
+-   Custom prompt templates to be used in different context (eg. "The story teller" and "Fun Fact Generator").
+-   Automatic translaction of generated text.
 
 ## Requirements
 
@@ -22,6 +22,7 @@ This example application is released under MIT license, meaning you can do whate
 -   huggingface_hub
 -   Jinja2
 -   pyllamacpp
+-   duckduckgo_search
 
 ## Installation
 
