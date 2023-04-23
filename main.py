@@ -10,6 +10,7 @@ from pyllamacpp.model import Model
 from huggingface_hub import hf_hub_download
 from jinja2 import Environment, FileSystemLoader
 from duckduckgo_search import ddg_translate
+from dotenv import load_dotenv
 
 class LlamaModelService(pyllamacpp_pb2_grpc.LlamaModelServicer):
     llama_context_params = {
@@ -91,7 +92,6 @@ class LlamaModelService(pyllamacpp_pb2_grpc.LlamaModelServicer):
 
         generated_text = self.model.generate(
             prompt,
-            new_text_callback=None,
             verbose=False,
             **self.gpt_params,
         )
@@ -121,7 +121,7 @@ class LlamaModelService(pyllamacpp_pb2_grpc.LlamaModelServicer):
 
 def translateTo(text, lang="en"):
     translation = ddg_translate(text, to=lang)
-    if len(translation) > 0:
+    if translation is not None and len(translation) > 0:
         # only use the first translation
         translation = translation[0]
         if translation["detected_language"] != lang:
@@ -135,6 +135,7 @@ def exit_gracefully(signum, frame):
     sys.exit(0)
 
 def serve():
+    load_dotenv()    
     global server
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     pyllamacpp_pb2_grpc.add_LlamaModelServicer_to_server(LlamaModelService(), server)
